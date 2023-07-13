@@ -1,0 +1,99 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "category_name": "Фрукты",
+      "category_description": "Сочные, сладкие"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 8,
+    "fields": {
+      "category_name": "Гигиена",
+      "category_description": "Продукты для ухода за собой"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 9,
+    "fields": {
+      "category_name": "Овощи",
+      "category_description": "Свежие"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 10,
+    "fields": {
+      "category_name": "Напитки",
+      "category_description": "Утоляют жажду"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "product_name": "Яблоки",
+      "product_description": "Сладкие, кислые",
+      "image": "",
+      "category": 1,
+      "price": "40.00",
+      "creation_date": "2023-07-13",
+      "last_change_date": "2023-07-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "product_name": "Мандарины",
+      "product_description": "Сладкие без косточек",
+      "image": "",
+      "category": 1,
+      "price": "60.00",
+      "creation_date": "2023-07-13",
+      "last_change_date": "2023-07-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "product_name": "Помидоры",
+      "product_description": "Большие, свежие",
+      "image": "",
+      "category": 9,
+      "price": "340.00",
+      "creation_date": "2023-07-13",
+      "last_change_date": "2023-07-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "product_name": "Зубная паста",
+      "product_description": "Рекомендуют стоматологи",
+      "image": "",
+      "category": 8,
+      "price": "470.00",
+      "creation_date": "2023-07-13",
+      "last_change_date": "2023-07-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "product_name": "Гранатовый сок",
+      "product_description": "Без добавления сахара",
+      "image": "",
+      "category": 10,
+      "price": "400.00",
+      "creation_date": "2023-07-13",
+      "last_change_date": "2023-07-13"
+    }
+  }
+]
