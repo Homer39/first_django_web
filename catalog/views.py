@@ -1,8 +1,22 @@
 from django.shortcuts import render
+from catalog.models import Product
 
 
 def homepage(request):
-    return render(request, 'catalog/home.html')
+    products_list = Product.objects.all()
+    contex = {
+        'object_list': products_list,
+    }
+    return render(request, 'catalog/home.html', contex)
+
+
+def products(request):
+    products_list = Product.objects.all()
+    contex = {
+        'object_list': products_list,
+    }
+    return render(request, 'catalog/products.html', contex)
+
 
 
 def contacts(request):

@@ -3,43 +3,43 @@
     "model": "catalog.category",
     "pk": 1,
     "fields": {
-      "category_name": "Фрукты",
-      "category_description": "Сочные, сладкие"
+      "category_name": "Смартфоны и гаджеты",
+      "category_description": "Смартфоны, умные часы"
     }
   },
   {
     "model": "catalog.category",
-    "pk": 8,
+    "pk": 2,
     "fields": {
-      "category_name": "Гигиена",
-      "category_description": "Продукты для ухода за собой"
+      "category_name": "Аудиотехника",
+      "category_description": "Наушники, колонки"
     }
   },
   {
     "model": "catalog.category",
-    "pk": 9,
+    "pk": 3,
     "fields": {
-      "category_name": "Овощи",
-      "category_description": "Свежие"
+      "category_name": "Ноутбуки, планшеты",
+      "category_description": "Ноутбуки, планшеты, аксессуары"
     }
   },
   {
     "model": "catalog.category",
-    "pk": 10,
+    "pk": 4,
     "fields": {
-      "category_name": "Напитки",
-      "category_description": "Утоляют жажду"
+      "category_name": "Телевизоры",
+      "category_description": "Телевизоры, пульты ДУ, 3D очки"
     }
   },
   {
     "model": "catalog.product",
     "pk": 1,
     "fields": {
-      "product_name": "Яблоки",
-      "product_description": "Сладкие, кислые",
+      "product_name": "Iphone 13 pro 256 GB",
+      "product_description": "Color: Black",
       "image": "",
       "category": 1,
-      "price": "40.00",
+      "price": "85000.00",
       "creation_date": "2023-07-13",
       "last_change_date": "2023-07-13"
     }
@@ -48,11 +48,11 @@
     "model": "catalog.product",
     "pk": 2,
     "fields": {
-      "product_name": "Мандарины",
-      "product_description": "Сладкие без косточек",
+      "product_name": "Marshall Major IV",
+      "product_description": "Color: Brown",
       "image": "",
-      "category": 1,
-      "price": "60.00",
+      "category": 2,
+      "price": "11000.00",
       "creation_date": "2023-07-13",
       "last_change_date": "2023-07-13"
     }
@@ -61,11 +61,11 @@
     "model": "catalog.product",
     "pk": 3,
     "fields": {
-      "product_name": "Помидоры",
-      "product_description": "Большие, свежие",
+      "product_name": "Apple MacBook air 13",
+      "product_description": "Apple M1 RAM 8 GB",
       "image": "",
-      "category": 9,
-      "price": "340.00",
+      "category": 3,
+      "price": "110000.00",
       "creation_date": "2023-07-13",
       "last_change_date": "2023-07-13"
     }
@@ -74,11 +74,11 @@
     "model": "catalog.product",
     "pk": 4,
     "fields": {
-      "product_name": "Зубная паста",
-      "product_description": "Рекомендуют стоматологи",
+      "product_name": "Телевизор LG 65NA",
+      "product_description": "Диагональ 65, HDR, LED RU",
       "image": "",
-      "category": 8,
-      "price": "470.00",
+      "category": 4,
+      "price": "55000.00",
       "creation_date": "2023-07-13",
       "last_change_date": "2023-07-13"
     }
@@ -87,11 +87,11 @@
     "model": "catalog.product",
     "pk": 5,
     "fields": {
-      "product_name": "Гранатовый сок",
-      "product_description": "Без добавления сахара",
+      "product_name": "Iphone 14 pro 256GB",
+      "product_description": "Color: Silver",
       "image": "",
-      "category": 10,
-      "price": "400.00",
+      "category": 1,
+      "price": "115000.00",
       "creation_date": "2023-07-13",
       "last_change_date": "2023-07-13"
     }

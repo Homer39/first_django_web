@@ -1,0 +1,48 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% load tags_filters %}
+{% block title %} Products {% endblock title %}
+{% block content %}
+
+<div class="col" style="margin-top:50px">
+    <div class="row">
+        <h2 align="center">Каталог</h2>
+
+        <div class="col" style="margin-top:20px">
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for object in object_list %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ object.image|mediapath }}"
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h6 class="card-text">{{ object.product_name }}</h6>
+                            <h6 class="card-text">{{ object.product_description }}</h6>
+                            <h6 class="card-text">{{ object.price }} руб</h6>
+                            <p>{{ object.category }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                        <button type="button" class="btn btn-outline-secondary border-1">View
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary border-1">Edit
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col" align="right" style="margin-top:5px">
+                                    <small class="text-muted">{{ object.creation_date }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
