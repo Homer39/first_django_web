@@ -1,15 +1,12 @@
 {% extends 'catalog/base.html' %}
 {% load static %}
 {% load tags_filters %}
-{% block title %} Products {% endblock title %}
+{% block title %} Home {% endblock title %}
 {% block content %}
 
-<div class="col" style="margin-top:40px">
-    <div class="row">
-        <h2 align="center">Главная</h2>
-        <p class="text-muted" align="center">Вы находитесь на сайте предназначенном для продажи товаров</p>
+
         {% for object in object_list %}
-        <div class="col-4">
+        <div class="col-4", style="margin-top:20px">
             <div class="card text-center">
                 <div class="card-header">
                     <h4>{{ object.product_name }}</h4>
@@ -24,7 +21,6 @@
             </div>
         </div>
         {% endfor %}
-    </div>
-</div>
+
 {% endblock content %}
 
