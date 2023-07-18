@@ -20,6 +20,12 @@ def products(request):
     return render(request, 'catalog/products.html', contex)
 
 
+def product(request, pk):
+    contex = {
+        'object_list': Product.objects.filter(pk=pk),
+    }
+    return render(request, 'catalog/product.html', contex)
+
 
 def contacts(request):
     context = {

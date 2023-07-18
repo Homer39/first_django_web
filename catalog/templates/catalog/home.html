@@ -15,7 +15,7 @@
                     <h3 class="card-title">{{ object.price }}</h3>
                     <p class="card-text">{{ object.product_description }}</p>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary" type="button">Купить</button>
+                        <a href="{% url 'product' object.pk%}" class="btn btn-outline-primary" type="button">Купить</a>
                     </div>
                 </div>
             </div>
