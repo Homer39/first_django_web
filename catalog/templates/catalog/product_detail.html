@@ -5,17 +5,17 @@
 
 
   <div class="col-6">
-  {% for object in object_list %}
 
-  <img src="{{ object.image|mediapath }}" class="card-img-top" alt="...",>
+
+  <img src="/media/{{ object.image }}" class="card-img-top" alt="...",>
   <div class="card-body">
     <h5 class="card-title">{{ object.product_name }}</h5>
     <p class="card-text">{{ object.product_description }}</p>
-    <p class="card-text">{{ object.price }}</p>
+    <p class="card-text">{{ object.price }} руб</p>
     <p class="card-text"><small class="text-muted">{{ object.creation_date }}</small></p>
   </div>
 
-  {% endfor %}
+
 </div>
 
 {% endblock %}

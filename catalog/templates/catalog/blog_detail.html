@@ -1,0 +1,22 @@
+{% extends 'catalog/base.html' %}
+{% load tags_filters %}
+{% block title %} Products {% endblock title %}
+{% block content %}
+
+
+<div class="col-6">
+    <div class="card">
+        <img src="/media/{{ object.image }}" class="card-img-top" alt="..." ,>
+        <div class="card-body">
+            <h5 class="card-title">{{ object.title }}</h5>
+            <p <small class="text-muted">({{ object.slug }})</small></p>
+            <p class="card-text">{{ object.text }}</p>
+            <div class="col" align="right" style="margin-top:5px">
+                <p class="card-text"><small class="text-muted">{{ object.creation_date }}</small></p>
+                <p class="card-text"><small class="text-muted">{{ object.view_count }}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

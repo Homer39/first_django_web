@@ -12,10 +12,10 @@
                     <h4>{{ object.product_name }}</h4>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">{{ object.price }}</h3>
+                    <h3 class="card-title">{{ object.price }} руб</h3>
                     <p class="card-text">{{ object.product_description }}</p>
                     <div class="d-grid gap-2">
-                        <a href="{% url 'product' object.pk%}" class="btn btn-outline-primary" type="button">Купить</a>
+                        <a href="{% url 'products_detail' object.pk%}" class="btn btn-outline-primary" type="button">Купить</a>
                     </div>
                 </div>
             </div>

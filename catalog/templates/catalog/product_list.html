@@ -5,14 +5,15 @@
 {% block content %}
 
 
+<a class="btn btn-outline-primary" href="{% url 'create_product' %}">Добавить товар</a>
         <div class="col" style="margin-top:20px">
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for object in object_list %}
                 <div class="col">
-                    <div class="card h-100">
+                    <div class="card">
                         <img src="{{ object.image|mediapath }}"
-                             class="card-img-top" alt="...">
+                             class="card-img-top" alt="..." >
                         <div class="card-body">
                             <h6 class="card-text">{{ object.product_name }}</h6>
                             <h6 class="card-text">{{ object.product_description }}</h6>
@@ -23,10 +24,12 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                        <a href="{% url 'product' object.pk%}" class="btn btn-outline-secondary border-1">View
+                                        <a href="{% url 'products_detail' object.pk %}" class="btn btn-outline-secondary border-1">View
                                         </a>
-                                        <button type="button" class="btn btn-outline-secondary border-1">Edit
-                                        </button>
+                                        <a href="{% url 'update_product' object.pk %}" class="btn btn-outline-secondary border-1">Edit
+                                        </a>
+                                        <a href="{% url 'delete_product' object.pk %}" class="btn btn-outline-secondary border-1">Delete
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col" align="right" style="margin-top:5px">
