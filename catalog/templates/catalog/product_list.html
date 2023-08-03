@@ -8,7 +8,7 @@
 <a class="btn btn-outline-primary" href="{% url 'create_product' %}">Добавить товар</a>
         <div class="col" style="margin-top:20px">
 
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-1">
                 {% for object in object_list %}
                 <div class="col">
                     <div class="card">
@@ -32,6 +32,13 @@
                                         </a>
                                     </div>
                                 </div>
+                                {% for version_item in object.version_set.all %}
+                                {% if version_item.is_actual %}
+                                <div class="col" align="center" style="margin-top:5px">
+                                    <p>Актуальная версия: {{ version_item.version_name }}</p>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
                                 <div class="col" align="right" style="margin-top:5px">
                                     <small class="text-muted">{{ object.creation_date }}</small>
                                 </div>

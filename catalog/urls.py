@@ -9,8 +9,10 @@ urlpatterns = [
     path('contacts/', contacts, name='contacts'),
     path('product_list/', ProductsListView.as_view(), name='products_list'),
     path('product_detail/<int:pk>/', ProductsDetailView.as_view(), name='products_detail'),
+
     path('create_product/', ProductCreateView.as_view(), name='create_product'),
     path('edit_product/<int:pk>/', ProductUpdateView.as_view(), name='update_product'),
+
     path('delete_product/<int:pk>/', ProductDeleteView.as_view(), name='delete_product'),
     path('blog_list/', BlogListView.as_view(), name='blog_list'),
     path('create_blog/', BlogCreateView.as_view(), name='create_blog'),
