@@ -1,7 +1,16 @@
+import random
+
 from config import settings
 from users.models import User
 
 from django.core.mail import send_mail
+
+
+# def get_random_password():
+#     pas = ''
+#     for x in range(16):  # Количество символов (16)
+#         pas += random.choice(list('1234567890abcdefghigklmnopqrstuvyxwzABCDEFGHIGKLMNOPQRSTUVYXWZ'))
+#     return pas
 
 
 def generate_new_password(user: User):
@@ -15,4 +24,3 @@ def generate_new_password(user: User):
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[user.email]
     )
-

@@ -11,11 +11,12 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.views import View
 
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from config import settings
 from users.email_verification_token_generator import email_verification_token
-from users.forms import UserRigisterForm, CustomPasswordResetForm, CustomResetConfirmForm, RecoverPasswordForm
+from users.forms import UserRigisterForm, CustomPasswordResetForm, CustomResetConfirmForm, RecoverPasswordForm, \
+    UserProfileForm
 from users.models import User
 from users.random_password import generate_new_password
 
@@ -32,7 +33,7 @@ class RegisterView(CreateView):
     model = User
     form_class = UserRigisterForm
     template_name = 'users/register.html'
-    success_url = reverse_lazy('users:login')
+    success_url = reverse_lazy('users:send_activate_mail')
 
     def form_valid(self, form):
         new_user = form.save()
@@ -46,6 +47,10 @@ class RegisterView(CreateView):
 
         )
         return super().form_valid(form)
+
+
+def send_activate_mail_view(request):
+    return render(request, 'users/send_activate_mail.html')
 
 
 class ActivateView(View):
@@ -112,6 +117,7 @@ def forget_password(request):
         recover_form = RecoverPasswordForm(request.POST)
         if recover_form.is_valid():
             email = recover_form.cleaned_data['email']
+
             user = User.objects.get(email=email)
             generate_new_password(user)
             return redirect('recover_password')
@@ -119,3 +125,12 @@ def forget_password(request):
 
 def recover_password_view(request):
     return render(request, 'users/recover_password.html')
+
+
+class ProfileView(UpdateView):
+    model = User
+    form_class = UserProfileForm
+    success_url = reverse_lazy('users:profile')
+
+    def get_object(self, queryset=None):
+        return self.request.user

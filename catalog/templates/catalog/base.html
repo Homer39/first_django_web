@@ -42,7 +42,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                                 {% if user.is_authenticated %}
-                                <li><a class="dropdown-item" href="#">Профиль</a></li>
+                                <li><a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a></li>
                                 <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
                                 {% else %}
                                 <li><a class="dropdown-item" href="{% url 'users:login' %}">Войти</a></li>
