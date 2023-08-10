@@ -3,6 +3,8 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from pytils.translit import slugify
 
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+
 from django.forms import inlineformset_factory
 
 from catalog.forms import ProductForm, VersionForm
@@ -17,6 +19,7 @@ class HomeListView(ListView):
 
 class CategoryListView(ListView):
     model = Category
+
 
 class CategoryProductListView(ListView):
     model = Product
@@ -34,6 +37,7 @@ class CategoryProductListView(ListView):
         context_data['category_pk'] = category_item.pk
         context_data['title'] = f'{category_item.category_name}'
         return context_data
+
 
 class ProductsListView(ListView):
     model = Product
@@ -55,9 +59,10 @@ def contacts(request):
     return render(request, 'catalog/contacts.html', context)
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
+    permission_required = 'catalog.add_product'
     success_url = reverse_lazy('products_list')
 
     def get_context_data(self, **kwargs):
@@ -72,6 +77,8 @@ class ProductCreateView(CreateView):
     def form_valid(self, form):
         formset = self.get_context_data()['formset']
         self.object = form.save()
+        self.object.vendor = self.request.user
+        self.object.save()
         if formset.is_valid():
             formset.instance = self.object
             formset.save()

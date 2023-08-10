@@ -20,6 +20,8 @@ from users.forms import UserRigisterForm, CustomPasswordResetForm, CustomResetCo
 from users.models import User
 from users.random_password import generate_new_password
 
+from django.core.exceptions import ObjectDoesNotExist
+
 
 class LoginView(BaseLoginView):
     template_name = 'users/login.html'
@@ -112,15 +114,24 @@ class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     success_url = reverse_lazy('users:login')
 
 
-def forget_password(request):
+def forget_password_view(request):
     if request.method == 'POST':
         recover_form = RecoverPasswordForm(request.POST)
         if recover_form.is_valid():
             email = recover_form.cleaned_data['email']
-
-            user = User.objects.get(email=email)
-            generate_new_password(user)
-            return redirect('recover_password')
+            try:
+                user = User.objects.get(email=email)
+                generate_new_password(user)
+                return redirect('users:recover_password')
+            except ObjectDoesNotExist:
+                form = RecoverPasswordForm()
+                context = {'form': form,
+                           'user_does_not_exist': recover_form.cleaned_data['email']}
+                return render(request, 'users/random_password_form.html', context)
+    else:
+        form = RecoverPasswordForm()
+        context = {'form': form}
+        return render(request, 'users/random_password_form.html', context=context)
 
 
 def recover_password_view(request):
