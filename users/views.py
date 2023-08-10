@@ -1,8 +1,7 @@
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model, login
-from django.contrib.auth.views import LoginView as BaseLoginView, PasswordResetView, PasswordResetConfirmView, \
-    PasswordResetDoneView, PasswordResetCompleteView
+from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
 from django.utils.encoding import force_bytes, force_str
 
@@ -15,8 +14,7 @@ from django.views.generic import CreateView, UpdateView
 
 from config import settings
 from users.email_verification_token_generator import email_verification_token
-from users.forms import UserRigisterForm, CustomPasswordResetForm, CustomResetConfirmForm, RecoverPasswordForm, \
-    UserProfileForm
+from users.forms import UserRigisterForm,RecoverPasswordForm, UserProfileForm
 from users.models import User
 from users.random_password import generate_new_password
 
@@ -77,41 +75,6 @@ class ActivateView(View):
         user.save()
         login(request, user)
         return redirect('users:login')
-
-
-class CustomPasswordResetView(PasswordResetView):
-    template_name = 'users/password_reset_form.html'
-    form_class = CustomPasswordResetForm
-    success_url = reverse_lazy('users:password_reset_done')
-    email_template_name = 'users/password_reset_email.html'
-    from_email = settings.EMAIL_HOST_USER
-
-
-class CustomPasswordResetDoneView(PasswordResetDoneView):
-    template_name = 'users/password_reset_done.html'
-
-
-class CustomPasswordResetConfirmView(PasswordResetConfirmView):
-    form_class = CustomResetConfirmForm
-    template_name = 'users/password_reset_confirm.html'
-    success_url = reverse_lazy('users:password_reset_complete')
-
-    def form_valid(self, form):
-        # Метод, который отрабатывает при успешной валидации формы
-        if form.is_valid():
-            self.object = form.save()
-            send_mail(
-                subject='Изменения пароля',
-                message=f'Вы поменяли пароль от своего профиля',
-                from_email=settings.EMAIL_HOST_USER,
-                recipient_list=[self.object.email]
-            )
-        return super().form_valid(form)
-
-
-class CustomPasswordResetCompleteView(PasswordResetCompleteView):
-    template_name = 'users/password_reset_complete.html'
-    success_url = reverse_lazy('users:login')
 
 
 def forget_password_view(request):
