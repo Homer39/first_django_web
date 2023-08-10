@@ -78,18 +78,19 @@ class CustomPasswordResetView(PasswordResetView):
     email_template_name = 'users/password_reset_email.html'
     from_email = settings.EMAIL_HOST_USER
     
-    def new_password(self, user=User):
-        new_password = User.objects.make_random_password(length=12)
-        user.set_password(new_password)
-        user.save()
-        send_mail(
-            subject='Востановление пароля',
-            message=f'Ваш новый пароль: {new_password}',
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[self.request.user.email]
-        )
-        
-        return redirect(reverse_lazy('users:login'))
+
+def generate_new_password(request):
+    new_password = User.objects.make_random_password(length=12)
+
+    send_mail(
+        subject='Востановление пароля',
+        message=f'Ваш новый пароль: {new_password}',
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[request.user.email]
+    )
+    request.user.set_password(new_password)
+    request.user.save()
+    return redirect(reverse_lazy('users:login'))
 
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
