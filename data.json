@@ -40,7 +40,7 @@
       "image": "",
       "category": 1,
       "price": "85000.00",
-      "creation_date": "2023-07-13",
+      "creation_date": "2023-08-03",
       "last_change_date": "2023-07-13"
     }
   },
@@ -53,7 +53,7 @@
       "image": "",
       "category": 2,
       "price": "11000.00",
-      "creation_date": "2023-07-13",
+      "creation_date": "2023-08-03",
       "last_change_date": "2023-07-13"
     }
   },
@@ -66,7 +66,7 @@
       "image": "",
       "category": 3,
       "price": "110000.00",
-      "creation_date": "2023-07-13",
+      "creation_date": "2023-08-03",
       "last_change_date": "2023-07-13"
     }
   },
@@ -79,7 +79,7 @@
       "image": "",
       "category": 4,
       "price": "55000.00",
-      "creation_date": "2023-07-13",
+      "creation_date": "2023-08-03",
       "last_change_date": "2023-07-13"
     }
   },
@@ -94,6 +94,62 @@
       "price": "115000.00",
       "creation_date": "2023-07-13",
       "last_change_date": "2023-07-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "product_name": "Iphone 15 pro max",
+      "product_description": "Iphone 15, color: pink, 512GB",
+      "image": "",
+      "category": 1,
+      "price": "140000.00",
+      "creation_date": "2023-08-03",
+      "last_change_date": "2023-08-03"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "product_name": "Iphone 15 pro max",
+      "product_description": "color: pink, 512GB",
+      "image": "",
+      "category": 1,
+      "price": "140000.00",
+      "creation_date": "2023-08-03",
+      "last_change_date": "2023-08-03"
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "product": 3,
+      "version_number": 1,
+      "version_name": "version 1.0",
+      "is_actual": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "product": 7,
+      "version_number": 1,
+      "version_name": "version 1.0",
+      "is_actual": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "product": 4,
+      "version_number": 1,
+      "version_name": "version 1.5",
+      "is_actual": true
     }
   }
 ]

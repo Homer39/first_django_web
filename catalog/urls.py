@@ -2,11 +2,16 @@ from django.urls import path
 
 from catalog.views import contacts, ProductCreateView, ProductsListView, ProductsDetailView, HomeListView, \
     ProductUpdateView, ProductDeleteView, BlogListView, BlogCreateView, BlogDetailView, BlogUpdateView, BlogDeleteView, \
-    toggle_published
+    toggle_published, CategoryListView, CategoryProductListView
 
 urlpatterns = [
     path('', HomeListView.as_view(), name='home_list'),
     path('contacts/', contacts, name='contacts'),
+
+    path('category/', CategoryListView.as_view(), name='category_list'),
+
+    path('<int:pk>/products/', CategoryProductListView.as_view(), name='category_product'),
+
     path('product_list/', ProductsListView.as_view(), name='products_list'),
     path('product_detail/<int:pk>/', ProductsDetailView.as_view(), name='products_detail'),
 

@@ -7,13 +7,33 @@ from django.forms import inlineformset_factory
 
 from catalog.forms import ProductForm, VersionForm
 
-from catalog.models import Product, Blog, Version
+from catalog.models import Product, Category, Blog, Version
 
 
 class HomeListView(ListView):
     model = Product
     template_name = 'catalog/home_list.html'
 
+
+class CategoryListView(ListView):
+    model = Category
+
+class CategoryProductListView(ListView):
+    model = Product
+    template_name = 'catalog/product_category.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(category_id=self.kwargs.get('pk'))
+        return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+
+        category_item = Category.objects.get(pk=self.kwargs.get('pk'))
+        context_data['category_pk'] = category_item.pk
+        context_data['title'] = f'{category_item.category_name}'
+        return context_data
 
 class ProductsListView(ListView):
     model = Product
