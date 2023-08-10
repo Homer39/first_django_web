@@ -2,7 +2,7 @@ from django.urls import path
 
 from users.apps import UsersConfig
 from users.views import RegisterView, LoginView, LogoutView, ActivateView, CustomPasswordResetView, \
-    CustomPasswordResetConfirmView, CustomPasswordResetDoneView, CustomPasswordResetCompleteView, generate_new_password
+    CustomPasswordResetConfirmView, CustomPasswordResetDoneView, CustomPasswordResetCompleteView, recover_password_view
 
 app_name = UsersConfig.name
 
@@ -15,5 +15,5 @@ urlpatterns = [
     path('reset_password_sent/', CustomPasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>', CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset_password_complete/', CustomPasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    path('generate_new_password/', generate_new_password, name='generate_new_password'),
+    path('recover_password/', recover_password_view, name='recover_password'),
 ]

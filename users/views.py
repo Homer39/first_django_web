@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.views import LoginView as BaseLoginView, PasswordResetView, PasswordResetConfirmView, \
     PasswordResetDoneView, PasswordResetCompleteView
@@ -15,8 +15,9 @@ from django.views.generic import CreateView
 
 from config import settings
 from users.email_verification_token_generator import email_verification_token
-from users.forms import UserRigisterForm, CustomPasswordResetForm, CustomResetConfirmForm
+from users.forms import UserRigisterForm, CustomPasswordResetForm, CustomResetConfirmForm, RecoverPasswordForm
 from users.models import User
+from users.random_password import generate_new_password
 
 
 class LoginView(BaseLoginView):
@@ -77,20 +78,6 @@ class CustomPasswordResetView(PasswordResetView):
     success_url = reverse_lazy('users:password_reset_done')
     email_template_name = 'users/password_reset_email.html'
     from_email = settings.EMAIL_HOST_USER
-    
-
-def generate_new_password(request):
-    new_password = User.objects.make_random_password(length=12)
-
-    send_mail(
-        subject='Востановление пароля',
-        message=f'Ваш новый пароль: {new_password}',
-        from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[request.user.email]
-    )
-    request.user.set_password(new_password)
-    request.user.save()
-    return redirect(reverse_lazy('users:login'))
 
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
@@ -118,3 +105,17 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'users/password_reset_complete.html'
     success_url = reverse_lazy('users:login')
+
+
+def forget_password(request):
+    if request.method == 'POST':
+        recover_form = RecoverPasswordForm(request.POST)
+        if recover_form.is_valid():
+            email = recover_form.cleaned_data['email']
+            user = User.objects.get(email=email)
+            generate_new_password(user)
+            return redirect('recover_password')
+
+
+def recover_password_view(request):
+    return render(request, 'users/recover_password.html')

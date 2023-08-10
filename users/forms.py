@@ -30,4 +30,7 @@ class CustomResetConfirmForm(StyleFormMixin, SetPasswordForm):
         model = User
 
 
+class RecoverPasswordForm(forms.Form):
+    email = forms.EmailField(required=True)
+
 
