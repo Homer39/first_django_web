@@ -10,6 +10,7 @@ from django.forms import inlineformset_factory
 from catalog.forms import ProductForm, VersionForm
 
 from catalog.models import Product, Category, Blog, Version
+from catalog.services import get_cached_categories
 
 
 class HomeListView(ListView):
@@ -19,6 +20,7 @@ class HomeListView(ListView):
 
 class CategoryListView(ListView):
     model = Category
+    queryset = get_cached_categories()
 
 
 class CategoryProductListView(ListView):

@@ -4,8 +4,9 @@
 {% block title %} Products {% endblock title %}
 {% block content %}
 
-
+{% if perms.catalog.add_product %}
 <a class="btn btn-outline-primary" href="{% url 'create_product' %}">Добавить товар</a>
+{% endif %}
         <div class="col" style="margin-top:20px">
 
             <div class="row row-cols-1 row-cols-md-3 g-1">
@@ -26,10 +27,12 @@
                                     <div class="btn-group" role="group" aria-label="Basic outlined example">
                                         <a href="{% url 'products_detail' object.pk %}" class="btn btn-outline-secondary border-1">View
                                         </a>
+                                        {% if perms.catalog.add_product %}
                                         <a href="{% url 'update_product' object.pk %}" class="btn btn-outline-secondary border-1">Edit
                                         </a>
                                         <a href="{% url 'delete_product' object.pk %}" class="btn btn-outline-secondary border-1">Delete
                                         </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 {% for version_item in object.version_set.all %}
